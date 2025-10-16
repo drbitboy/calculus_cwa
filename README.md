@@ -15,6 +15,6 @@
 
 ### Data fit results:
 
-[](https://github.com/drbitboy/calculus_cwa/blob/master/images/f_fit.png?raw=true)
+![](https://github.com/drbitboy/calculus_cwa/blob/master/images/f_fit.png?raw=true)
 
-[](https://github.com/drbitboy/calculus_cwa/blob/master/images/g_fit.png?raw=true)
+![](https://github.com/drbitboy/calculus_cwa/blob/master/images/g_fit.png?raw=true)
