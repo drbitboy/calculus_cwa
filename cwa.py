@@ -171,3 +171,14 @@ if "__main__" == __name__ and 6 == len(sys.argv):
   R1val = ((denom0val * numer1val) - (numer0val * denom1val)) / (denom0val * denom0val)
   print(allfour)
   print(f"R'({x_eval}) = {R1val}")
+
+  ### rdx:  reciprocal of deltaX, i.e. 1 / deltX
+  ### hdx: half of deltaX
+  ### xp,xm:  X +/- half deltaX
+  neval,deval = numer.polyval, denom.polyval
+  for rdx in [1<<i for i in range(0,11,2)]:
+    ### hdX +/- half deltaX
+    hdx = 0.5 / rdx
+    xp,xm= x_eval+hdx, x_eval-hdx
+    slope_est = rdx * ((neval(xp)/deval(xp)) - (neval(xm)/deval(xm)))
+    print(f"R'({x_eval},dx=1/{rdx}) = {slope_est}")
