@@ -77,15 +77,20 @@ class CWA:
         raise e
 
   def plot(self,extra_title=''):
-    import matplotlib.pyplot as plt
-    plt.plot(self.xs,np.polyval(self.poly,self.xs),'b',lw=5,label='Fit')
-    plt.plot(self.xs,self.ys,'c.',label='Raw data')
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title(self.image_path + f" ({extra_title})")
-    plt.grid()
-    plt.legend(loc='best')
-    plt.show()
+    try:
+      import matplotlib.pyplot as plt
+      plt.plot(self.xs,np.polyval(self.poly,self.xs),'b',lw=5,label='Fit')
+      plt.plot(self.xs,self.ys,'c.',label='Raw data')
+      plt.xlabel('X')
+      plt.ylabel('Y')
+      plt.title(f"{self.image_path} ({extra_title})")
+      plt.grid()
+      plt.legend(loc='best')
+      plt.show()
+    except:
+      import traceback as tb
+      tb.print_exc()
+      print(f"Plotting failed for [{self.image_path} ({extra_title})]")
 
   def deriv_coeffs(self, nderiv, poly=None):
     if poly is None: return self.deriv_coeffs(nderiv, self.poly)
