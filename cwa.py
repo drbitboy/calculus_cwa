@@ -92,6 +92,28 @@ class CWA:
       tb.print_exc()
       print(f"Plotting failed for [{self.image_path} ({extra_title})]")
 
+  def plotratio(self,denom,x_eval):
+    try:
+      numer = self
+      xs = set(numer.xs)
+      xs.update(denom.xs)
+      xs.discard(0.0)
+      xs = list(xs)
+      xs.sort()
+      xs = np.array(xs)
+      Rs = numer.polyval(xs) / denom.polyval(xs)
+      import matplotlib.pyplot as plt
+      plt.plot(xs,Rs)
+      plt.axvline(x_eval,color='k',linestyle=':')
+      plt.xlabel('X')
+      plt.ylabel('Denominator/Numerator')
+      plt.title(f"<{numer.image_path}>/<{denom.image_path}>")
+      plt.show()
+    except:
+      import traceback as tb
+      tb.print_exc()
+      print(f"Plotting failed for ratio [<{numer.image_path}>/<{denom.image_path}>]")
+
   def deriv_coeffs(self, nderiv, poly=None):
     if poly is None: return self.deriv_coeffs(nderiv, self.poly)
     if nderiv < 1: return poly
@@ -164,6 +186,7 @@ if "__main__" == __name__ and 6 == len(sys.argv):
 
   numer.plot('Numerator')
   denom.plot('Denominator')
+  numer.plotratio(denom,x_eval)
 
   allfour = (numer0val, numer1val, denom0val, denom1val
   ,) = (numer.polyval(x_eval), numer.polyval(x_eval,1)
@@ -174,8 +197,8 @@ if "__main__" == __name__ and 6 == len(sys.argv):
   ### R' = (denom*numer' - numer*denom') / denom^2
 
   R1val = ((denom0val * numer1val) - (numer0val * denom1val)) / (denom0val * denom0val)
-  print(allfour)
-  print(f"R'({x_eval}) = {R1val}")
+  print(f"((numer({x_eval}),numer'({x_eval}),denom({x_eval}),denom'({x_eval}))\n  = {allfour}")
+  print(f"R'({x_eval}) = {R1val} (R = numer/denom)")
 
   ### rdx:  reciprocal of deltaX, i.e. 1 / deltX
   ### hdx: half of deltaX
