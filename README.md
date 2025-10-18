@@ -36,3 +36,7 @@
 
 ![](https://github.com/drbitboy/calculus_cwa/blob/master/images/f.png?raw=true)
 →![](https://github.com/drbitboy/calculus_cwa/blob/master/images/f_fit.png?raw=true)
+
+![](https://github.com/drbitboy/calculus_cwa/blob/master/images/f_over_g.png?raw=true)
+
+![](https://github.com/drbitboy/calculus_cwa/blob/master/images/f_over_g_inset.png?raw=true)
